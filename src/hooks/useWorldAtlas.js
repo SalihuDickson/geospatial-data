@@ -4,7 +4,7 @@ import { feature, mesh } from "topojson";
 
 const jsonUrl = "https://unpkg.com/world-atlas@2.0.2/countries-50m.json";
 
-const useData = () => {
+const useWorldAtlas = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const useData = () => {
       const { countries } = topology.objects;
       setData({
         countries: feature(topology, countries),
-        interior: mesh(topology, countries, (a, b) => a != b),
+        interior: mesh(topology, countries, (a, b) => a !== b),
       });
     });
   }, []);
@@ -20,4 +20,4 @@ const useData = () => {
   return data;
 };
 
-export default useData;
+export default useWorldAtlas;
